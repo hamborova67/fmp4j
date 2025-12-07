@@ -3,12 +3,16 @@ version: 2.1
 jobs:
   gradle-build:
     docker:
-      - image: circleci/openjdk:17-jdk
+      - image: cimg/openjdk:17.0
 
     working_directory: ~/repo
 
     steps:
       - checkout
+
+      - run:
+          name: Udeľ prístupové práva pre gradlew
+          command: chmod +x ./gradlew
 
       - run:
           name: Spustenie ./gradlew clean build
